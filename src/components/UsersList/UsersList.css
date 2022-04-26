@@ -1,26 +1,26 @@
 .users-list {
-    margin-top: 70px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 60px;
+  margin: 70px 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 60px;
 }
 
 .users-list__item {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .users-list__image-container {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .users-list__image {
-    width: 64px;
-    height: 64px;
-    object-fit: cover;
-    border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .users-list__text {
-    margin-top: 4px;
+  margin-top: 4px;
 }

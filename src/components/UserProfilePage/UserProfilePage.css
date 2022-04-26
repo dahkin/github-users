@@ -1,68 +1,69 @@
 .user-profile {
-    margin-bottom: 50px;
-    display: flex;
-    align-items: center;
+  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
 }
 
 .user-profile__image-container {
-    margin-right: 20px;
+  margin-right: 20px;
 }
 
 .user-profile__image {
-    width: 147px;
-    height: 147px;
-    object-fit: cover;
-    border-radius: 50%;
+  width: 147px;
+  height: 147px;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .user-profile__title {
-    font-family: var(--font-accent);
-        font-size: 30px;
-    text-transform: uppercase;
+  font-family: var(--font-accent);
+  font-size: 30px;
+  text-transform: uppercase;
 }
 
 .user-profile__text {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .user-profile__accent {
-    font-family: var(--font-primary);
-    color: var(--color-accent);
-    text-transform: lowercase;
-    font-weight: 500;
+  font-family: var(--font-primary);
+  color: var(--color-accent);
+  text-transform: lowercase;
+  font-weight: 500;
 }
 
 .repository-list__header {
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 }
 
 .repository-list__title {
-    font-family: var(--font-accent);
-    font-size: 30px;
-    font-weight: bold;
-    text-transform: uppercase;
+  font-family: var(--font-accent);
+  font-size: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .repository-list__container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 50px;
 }
 
 .repository-list__item {
-    padding: 16px;
-border: 1px solid var(--color-grey-light);
-    border-radius: 8px;
+  padding: 16px;
+  border: 1px solid var(--color-grey-light);
+  border-radius: 8px;
 }
 
 .repository-list__item-title {
-    margin-bottom: 10px;
-    font-weight: bold;
+  margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .repository-list__item-text {
-    font-size: 13px;
+  font-size: 13px;
 }

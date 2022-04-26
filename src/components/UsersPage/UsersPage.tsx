@@ -1,14 +1,35 @@
-import React, {FC} from 'react';
-import {Header} from "../Header/Header";
-import {UsersList} from "../UsersList/UsersList";
+import React, { Dispatch, FC, SetStateAction } from 'react';
+import { UsersList } from '../UsersList/UsersList';
+import { UserAPI } from '../../types';
+import { getFullUsersInfo } from '../../utils';
 
-export const UsersPage: FC = () => {
-  return <>
-    <Header />
+interface Props {
+  setSearchValue: Dispatch<SetStateAction<string>>;
+}
+
+export const UsersPage: FC<Props> = ({ setSearchValue }) => {
+  const [users, setUsers] = React.useState<UserAPI[]>([]);
+
+  React.useEffect(() => {
+    setSearchValue('');
+    fetch('https://api.github.com/users', {
+      headers: new Headers({
+        Accept: 'application/vnd.github.v3+json',
+        Authorization: 'token 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',
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setUsers(data);
+        getFullUsersInfo(data, setUsers);
+      });
+  }, []);
+
+  return (
     <main>
       <div className="container">
-        <UsersList />
+        <UsersList users={users} />
       </div>
     </main>
-  </>;
+  );
 };
