@@ -17,6 +17,7 @@ export const UsersSearchPage: FC = () => {
   // Fetch users by query
   React.useEffect(() => {
     setLoading(true);
+    setLoadingRepos(true);
     fetch(`https://api.github.com/search/users?q=${query}`, {
       headers: new Headers({
         Accept: 'application/vnd.github.v3+json',
