@@ -12,6 +12,7 @@ export const UsersSearchPage: FC = () => {
 
   const [users, setUsers] = React.useState<UserAPI[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
+  const [loadingRepos, setLoadingRepos] = React.useState<boolean>(true);
 
   // Fetch users by query
   React.useEffect(() => {
@@ -31,7 +32,7 @@ export const UsersSearchPage: FC = () => {
           return;
         }
         // Fetch extra info for each user
-        getFullUsersInfo(data.items, setUsers);
+        getFullUsersInfo(data.items, setUsers, setLoadingRepos);
       });
   }, [query]);
 
@@ -43,7 +44,7 @@ export const UsersSearchPage: FC = () => {
             <h1 className="title">
               {users.length > 0 ? 'Пользователи по запросу ' + query : 'Ничего не найдено по запросу ' + query}
             </h1>
-            <UsersList users={users} />
+            <UsersList users={users} loadingRepos={loadingRepos} />
           </>
         ) : (
           <h1 className="title">Поиск...</h1>

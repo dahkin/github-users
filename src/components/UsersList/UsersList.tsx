@@ -6,9 +6,10 @@ import { numberDeclination } from '../../utils';
 
 type Props = {
   users: UserAPI[];
+  loadingRepos: boolean;
 };
 
-export const UsersList: FC<Props> = ({ users }) => {
+export const UsersList: FC<Props> = ({ users, loadingRepos }) => {
   return (
     <div className="users-list">
       {users.map((item: UserAPI) => (
@@ -21,8 +22,13 @@ export const UsersList: FC<Props> = ({ users }) => {
               <Link to={`/users/${item.login}`} className="link">
                 {item.login}
               </Link>
-              {item.repos != null &&
-                ', ' + item.repos + ' ' + numberDeclination(item.repos, ['репозиторий', 'репозитория', 'репозиториев'])}
+              {', '}
+              {loadingRepos ? (
+                <div className="loading-view"></div>
+              ) : (
+                item.repos != null &&
+                item.repos + ' ' + numberDeclination(item.repos, ['репозиторий', 'репозитория', 'репозиториев'])
+              )}
             </h2>
             {item.company && <p className="users-list__text">{item.company}</p>}
           </div>

@@ -9,6 +9,7 @@ interface Props {
 
 export const UsersPage: FC<Props> = ({ setSearchValue }) => {
   const [users, setUsers] = React.useState<UserAPI[]>([]);
+  const [loadingRepos, setLoadingRepos] = React.useState<boolean>(true);
 
   React.useEffect(() => {
     setSearchValue('');
@@ -21,14 +22,14 @@ export const UsersPage: FC<Props> = ({ setSearchValue }) => {
       .then((response) => response.json())
       .then((data) => {
         setUsers(data);
-        getFullUsersInfo(data, setUsers);
+        getFullUsersInfo(data, setUsers, setLoadingRepos);
       });
   }, []);
 
   return (
     <main>
       <div className="container">
-        <UsersList users={users} />
+        <UsersList users={users} loadingRepos={loadingRepos} />
       </div>
     </main>
   );

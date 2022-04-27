@@ -11,7 +11,11 @@ export const userRequests = (users: UserAPI[]): Promise<UserAPI>[] =>
     }).then((res) => res.json())
   );
 
-export const getFullUsersInfo = (users: UserAPI[], setUsers: Dispatch<SetStateAction<UserAPI[]>>): void => {
+export const getFullUsersInfo = (
+  users: UserAPI[],
+  setUsers: Dispatch<SetStateAction<UserAPI[]>>,
+  setLoadingRepos: Dispatch<SetStateAction<boolean>>
+): void => {
   Promise.allSettled(userRequests(users)).then((res) => {
     res.forEach((result) => {
       if (result.status === 'fulfilled') {
@@ -22,6 +26,7 @@ export const getFullUsersInfo = (users: UserAPI[], setUsers: Dispatch<SetStateAc
               : obj
           )
         );
+        setLoadingRepos(false);
       }
     });
   });
