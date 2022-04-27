@@ -91,47 +91,47 @@ export const UserProfilePage: FC<Props> = ({ setSearchValue }) => {
           </div>
         </section>
 
-        {!loadingRepos ? (
-          <section className="repository-list">
-            <div className="repository-list__header">
-              <h2 className="repository-list__title">Репозитории</h2>
-              {repos && repos.length > 0 && (
-                <a
-                  href={`https://github.com/${login}?tab=repositories`}
-                  className="link"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Все репозитории
-                </a>
-              )}
-            </div>
+        <section className="repository-list">
+          {!loadingRepos ? (
+            <>
+              <div className="repository-list__header">
+                <h2 className="repository-list__title">Репозитории</h2>
+                {repos && repos.length > 0 && (
+                  <a
+                    href={`https://github.com/${login}?tab=repositories`}
+                    className="link"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Все репозитории
+                  </a>
+                )}
+              </div>
 
-            <div className="repository-list__container">
-              {!errorRepos ? (
-                repos &&
-                repos.map((item) => (
-                  <section className="repository-list__item" key={item.id}>
-                    <h3 className="repository-list__item-title">
-                      <a href={item.html_url} target="_blank" rel="noreferrer" className="link">
-                        {item.name}
-                      </a>
-                    </h3>
-                    <p className="repository-list__item-text">{item.description}</p>
-                  </section>
-                ))
-              ) : (
-                <h3 className="repository-list__item-title">{errorRepos}</h3>
-              )}
-            </div>
-          </section>
-        ) : (
-          <section className="repository-list">
+              <div className="repository-list__container">
+                {!errorRepos ? (
+                  repos &&
+                  repos.map((item) => (
+                    <section className="repository-list__item" key={item.id}>
+                      <h3 className="repository-list__item-title">
+                        <a href={item.html_url} target="_blank" rel="noreferrer" className="link">
+                          {item.name}
+                        </a>
+                      </h3>
+                      <p className="repository-list__item-text">{item.description}</p>
+                    </section>
+                  ))
+                ) : (
+                  <h3 className="repository-list__item-title">{errorRepos}</h3>
+                )}
+              </div>
+            </>
+          ) : (
             <div className="repository-list__header">
               <h2 className="repository-list__title">Загрузка репозиториев...</h2>
             </div>
-          </section>
-        )}
+          )}
+        </section>
       </div>
     </main>
   );
