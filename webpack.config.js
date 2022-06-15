@@ -33,6 +33,7 @@ module.exports = {
         type: 'asset/resource',
         generator: {
           filename: 'sw.js',
+          publicPath: '/github-users/',
         },
       },
       {

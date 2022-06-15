@@ -2,6 +2,9 @@ stages:
   - test
   - deploy
 
+variables:
+  PUBLIC_URL: '/github-users'
+
 code_quality:
   image: node:14.16.1
   stage: test
