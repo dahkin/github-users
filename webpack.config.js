@@ -14,7 +14,8 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.[contenthash].js',
-    publicPath: 'github-users/',
+    publicPath: '/',
+    clean: true,
   },
   module: {
     rules: [
