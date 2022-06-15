@@ -7,12 +7,17 @@
   --color-background: #262a2f;
   --color-accent: #f53;
   --color-black: #1e2027;
+  --color-white: #1e2027;
+  --color-white-alpha64: rgba(255, 255, 255, 0.64);
   --color-grey: #8a8a8a;
   --color-grey-light: #e5e5e5;
+  --background-zero: #fff;
   --container-width: 1075px;
+  --skeleton-color: var(--color-grey);
+  --skeleton-gradient: linear-gradient(to right, transparent 0%, var(--color-white-alpha64) 50%, transparent 100%);
 }
 
-* {
+*:not(svg *) {
   all: unset;
   display: revert;
 }
@@ -50,4 +55,29 @@ body {
 .link:focus,
 .link:hover {
   opacity: 0.7;
+}
+
+/* Skeleton */
+.skeleton-gradient,
+.skeleton-gradient::before,
+.skeleton-gradient::after {
+  background-size: 200% 100%;
+  background-attachment: fixed;
+  background-image: var(--skeleton-gradient);
+  animation: skeleton-gradient-animation 1s linear infinite;
+}
+
+.skeleton-gradient::before,
+.skeleton-gradient::after {
+  animation: skeleton-gradient-animation 1s linear infinite;
+}
+
+@keyframes skeleton-gradient-animation {
+  from {
+    background-position: 100% 0;
+  }
+
+  to {
+    background-position: -100% 0;
+  }
 }

@@ -1,36 +1,10 @@
-import { UserAPI } from './types';
-import { Dispatch, SetStateAction } from 'react';
-
-export const userRequests = (users: UserAPI[]): Promise<UserAPI>[] =>
-  users.map((user) =>
-    fetch(`https://api.github.com/users/${user.login}`, {
-      headers: new Headers({
-        Accept: 'application/vnd.github.v3+json',
-        Authorization: 'token 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',
-      }),
-    }).then((res) => res.json())
-  );
-
-export const getFullUsersInfo = (
-  users: UserAPI[],
-  setUsers: Dispatch<SetStateAction<UserAPI[]>>,
-  setLoadingRepos: Dispatch<SetStateAction<boolean>>
-): void => {
-  Promise.allSettled(userRequests(users)).then((res) => {
-    res.forEach((result) => {
-      if (result.status === 'fulfilled') {
-        setUsers((prevItems) =>
-          prevItems.map((obj) =>
-            obj.login === result.value.login
-              ? { ...obj, company: result.value.company, repos: result.value.public_repos }
-              : obj
-          )
-        );
-        setLoadingRepos(false);
-      }
-    });
-  });
-};
+export function repeat<T>(cb: (i: number) => T, times = 1): T[] {
+  const res = [];
+  for (let i = 0; i < times; i++) {
+    res.push(cb(i));
+  }
+  return res;
+}
 
 export const numberFormat = (num: number, digits: number): string | number => {
   const lookup = [
@@ -51,21 +25,3 @@ export const numberFormat = (num: number, digits: number): string | number => {
     });
   return item ? (num / item.value).toFixed(digits).replace(rx, '$1') + item.symbol : '0';
 };
-
-export const numberDeclination = (n: number, text_forms: string[]): string => {
-  n = Math.abs(n) % 100;
-  const n1 = n % 10;
-  if (n > 10 && n < 20) {
-    return text_forms[2];
-  }
-  if (n1 > 1 && n1 < 5) {
-    return text_forms[1];
-  }
-  if (n1 == 1) {
-    return text_forms[0];
-  }
-  return text_forms[2];
-};
-
-export const numberUnit = (number: number, valueList: string[]): string =>
-  number < 1000 ? numberDeclination(number, valueList) : valueList[2];

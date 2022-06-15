@@ -1,0 +1,55 @@
+.users-list__item {
+  display: flex;
+  align-items: center;
+}
+
+.users-list__image-container {
+  margin-right: 10px;
+}
+
+.users-list__image {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.users-list__content {
+  flex-grow: 1;
+}
+
+.users-list__text {
+  margin-top: 4px;
+}
+
+/* Loading animation */
+.loading-view,
+.loading-view::before,
+.loading-view::after {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  background-color: var(--skeleton-color);
+  border-radius: 5px;
+}
+
+.loading-view {
+  position: relative;
+  margin-left: 10px;
+  vertical-align: baseline;
+}
+
+.loading-view::before,
+.loading-view::after {
+  content: "";
+  position: absolute;
+  top: 0;
+}
+
+.loading-view::before {
+  left: -9px;
+}
+
+.loading-view::after {
+  left: 9px;
+}

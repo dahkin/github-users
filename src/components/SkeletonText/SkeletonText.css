@@ -1,0 +1,25 @@
+.skeleton-text {
+  display: block;
+  color: var(--skeleton-color);
+  width: 100%;
+}
+
+.skeleton-text--accent {
+  color: var(--color-accent);
+}
+
+.skeleton-text__row {
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+  height: 1em;
+  background-color: currentColor;
+}
+
+.skeleton-text__row:last-child {
+  width: 70%;
+}
+
+.skeleton-text__row:last-child:first-child {
+  width: 60%;
+}

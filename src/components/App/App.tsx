@@ -4,6 +4,7 @@ import { UserProfilePage } from '../UserProfilePage/UserProfilePage';
 import { UsersPage } from '../UsersPage/UsersPage';
 import { UsersSearchPage } from '../UsersSearchPage/UsersSearchPage';
 import { Header } from '../Header/Header';
+import { OfflineNotificationWatcher } from '@features/networkStatus/OfflineNotificationWatcher/OfflineNotificationWatcher';
 
 export const App: FC = () => {
   // Get location path
@@ -19,8 +20,8 @@ export const App: FC = () => {
 
   return (
     <>
+      <OfflineNotificationWatcher />
       <Header searchValue={searchValue} setSearchValue={setSearchValue} />
-
       <Switch>
         <Route path="/users/:login">
           <UserProfilePage setSearchValue={setSearchValue} />

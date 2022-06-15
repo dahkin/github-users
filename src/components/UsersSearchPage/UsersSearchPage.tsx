@@ -1,10 +1,12 @@
 import React, { FC } from 'react';
-import { UsersList } from '../UsersList/UsersList';
+import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import { UserAPI, LocationState } from '../../types';
-import { getFullUsersInfo } from '../../utils';
+import { UsersList } from '@components/UsersList/UsersList';
+import { UsersListSkeleton } from '@components/UsersList/UsersListSkeleton';
 
 export const UsersSearchPage: FC = () => {
+  const { t } = useTranslation();
   // Get search query
   const location = useLocation<LocationState>();
   const params = new URLSearchParams(location.search);
@@ -12,28 +14,15 @@ export const UsersSearchPage: FC = () => {
 
   const [users, setUsers] = React.useState<UserAPI[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
-  const [loadingRepos, setLoadingRepos] = React.useState<boolean>(true);
 
   // Fetch users by query
   React.useEffect(() => {
     setLoading(true);
-    setLoadingRepos(true);
-    fetch(`https://api.github.com/search/users?q=${query}`, {
-      headers: new Headers({
-        Accept: 'application/vnd.github.v3+json',
-        Authorization: 'token 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',
-      }),
-    })
+    fetch(`https://api.github.com/search/users?q=${query}`)
       .then((response) => response.json())
       .then((data) => {
         setUsers(data.items);
         setLoading(false);
-        // Break if there are no results
-        if (data.total_count === 0) {
-          return;
-        }
-        // Fetch extra info for each user
-        getFullUsersInfo(data.items, setUsers, setLoadingRepos);
       });
   }, [query]);
 
@@ -42,13 +31,18 @@ export const UsersSearchPage: FC = () => {
       <div className="container">
         {!loading ? (
           <>
-            <h1 className="title">
-              {users.length > 0 ? 'Пользователи по запросу ' + query : 'Ничего не найдено по запросу ' + query}
+            <h1 className="title" aria-live="polite">
+              {users.length > 0 ? t('search_title', { name: query }) : t('search_empty_title', { name: query })}
             </h1>
-            <UsersList users={users} loadingRepos={loadingRepos} />
+            <UsersList users={users} />
           </>
         ) : (
-          <h1 className="title">Поиск...</h1>
+          <>
+            <h1 className="title" aria-live="polite">
+              {t('search_loading_message')}...
+            </h1>
+            <UsersListSkeleton />
+          </>
         )}
       </div>
     </main>

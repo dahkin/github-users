@@ -11,8 +11,12 @@
 .user-profile__image {
   width: 147px;
   height: 147px;
-  object-fit: cover;
   border-radius: 50%;
+  overflow: hidden;
+}
+
+.user-profile__content {
+  flex-grow: 1;
 }
 
 .user-profile__title {
