@@ -20,7 +20,7 @@ if ('serviceWorker' in navigator) {
 initI18n(() => {
   ReactDOM.render(
     <NetworkStatusContextProvider>
-      <Router basename={process.env.PUBLIC_URL}>
+      <Router>
         <App />
       </Router>
     </NetworkStatusContextProvider>,

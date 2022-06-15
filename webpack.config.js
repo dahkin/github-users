@@ -14,7 +14,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.[contenthash].js',
-    publicPath: '/github-users/',
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -33,7 +33,6 @@ module.exports = {
         type: 'asset/resource',
         generator: {
           filename: 'sw.js',
-          publicPath: '/github-users/',
         },
       },
       {
