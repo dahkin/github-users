@@ -31,6 +31,7 @@ _self.addEventListener('install', (event) => {
     caches
       .open(cacheName)
       .then(async (cache) => {
+        cache.add('/');
         fetch(mainPageRequest).then((response) => cache.put(mainPageRequest, getResponseWithDate(response)));
       })
       .catch((e) => console.error('sw install error', e))
