@@ -28,6 +28,8 @@ export const UsersItem: FC<Props> = ({ user }) => {
       });
   }, []);
 
+  const repositoriesView = () => userData.repos != null && t('repositories_number', { count: userData.repos });
+
   const { t } = useTranslation();
   return (
     <article className="users-list__item" key={user.login}>
@@ -40,11 +42,7 @@ export const UsersItem: FC<Props> = ({ user }) => {
             {user.login}
           </Link>
           {', '}
-          {loadingRepos ? (
-            <div className="loading-view skeleton-gradient" />
-          ) : (
-            userData.repos != null && t('repositories_number', { count: userData.repos })
-          )}
+          {loadingRepos ? <div className="loading-view skeleton-gradient" /> : repositoriesView()}
         </h2>
         {userData.company && <p className="users-list__text">{userData.company}</p>}
       </div>
