@@ -18,14 +18,12 @@ export const UsersItem: FC<Props> = ({ user }) => {
     fetch(`https://api.github.com/users/${user.login}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setUserData({ company: data.company, repos: data.public_repos });
         setLoadingRepos(false);
       });
   }, []);
 
   const repositoriesView = () => userData.repos != null && t('repositories_number', { count: userData.repos });
-  console.log(user, userData);
   const { t } = useTranslation();
   return (
     <article className="users-list__item" key={user.login}>
