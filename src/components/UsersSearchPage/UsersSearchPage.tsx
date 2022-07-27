@@ -18,7 +18,12 @@ export const UsersSearchPage: FC = () => {
   // Fetch users by query
   React.useEffect(() => {
     setLoading(true);
-    fetch(`https://api.github.com/search/users?q=${query}`)
+    fetch(`https://api.github.com/search/users?q=${query}`, {
+      headers: new Headers({
+        Accept: 'application/vnd.github.v3+json',
+        Authorization: 'token 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',
+      }),
+    })
       .then((response) => response.json())
       .then((data) => {
         setUsers(data.items);

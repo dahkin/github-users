@@ -15,7 +15,12 @@ export const UsersItem: FC<Props> = ({ user }) => {
 
   useEffect(() => {
     setLoadingRepos(true);
-    fetch(`https://api.github.com/users/${user.login}`)
+    fetch(`https://api.github.com/users/${user.login}`, {
+      headers: new Headers({
+        Accept: 'application/vnd.github.v3+json',
+        Authorization: 'token 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',
+      }),
+    })
       .then((response) => response.json())
       .then((data) => {
         setUserData({ company: data.company, repos: data.public_repos });
@@ -24,6 +29,7 @@ export const UsersItem: FC<Props> = ({ user }) => {
   }, []);
 
   const repositoriesView = () => userData.repos != null && t('repositories_number', { count: userData.repos });
+
   const { t } = useTranslation();
   return (
     <article className="users-list__item" key={user.login}>
