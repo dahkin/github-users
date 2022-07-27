@@ -15,21 +15,17 @@ export const UsersItem: FC<Props> = ({ user }) => {
 
   useEffect(() => {
     setLoadingRepos(true);
-    fetch(`https://api.github.com/users/${user.login}`, {
-      headers: new Headers({
-        Accept: 'application/vnd.github.v3+json',
-        Authorization: 'token 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',
-      }),
-    })
+    fetch(`https://api.github.com/users/${user.login}`)
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         setUserData({ company: data.company, repos: data.public_repos });
         setLoadingRepos(false);
       });
   }, []);
 
   const repositoriesView = () => userData.repos != null && t('repositories_number', { count: userData.repos });
-
+  console.log(user, userData);
   const { t } = useTranslation();
   return (
     <article className="users-list__item" key={user.login}>
