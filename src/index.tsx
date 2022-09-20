@@ -9,7 +9,7 @@ import { NetworkStatusContextProvider } from '@features/networkStatus/NetworkSta
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
     navigator.serviceWorker
-      .register('/sw.js')
+      .register('sw.js')
       .then(function () {
         console.log('Service Worker Registered!!');
       })
