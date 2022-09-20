@@ -32,12 +32,7 @@ export const UserProfilePage: FC<Props> = ({ setSearchValue }) => {
     setLoadingRepos(true);
 
     // Fetch user info
-    fetch(`https://api.github.com/users/${login}`, {
-      headers: new Headers({
-        Accept: 'application/vnd.github.v3+json',
-        Authorization: 'token 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',
-      }),
-    })
+    fetch(`https://api.github.com/users/${login}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.message || data.length === 0) {
@@ -48,12 +43,7 @@ export const UserProfilePage: FC<Props> = ({ setSearchValue }) => {
       });
 
     // Fetch user repos info
-    fetch(`https://api.github.com/users/${login}/repos`, {
-      headers: new Headers({
-        Accept: 'application/vnd.github.v3+json',
-        Authorization: 'token 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',
-      }),
-    })
+    fetch(`https://api.github.com/users/${login}/repos`)
       .then((res) => res.json())
       .then((data) => {
         if (data.message || data.length === 0) {

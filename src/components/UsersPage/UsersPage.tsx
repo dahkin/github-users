@@ -14,12 +14,7 @@ export const UsersPage: FC<Props> = ({ setSearchValue }) => {
   React.useEffect(() => {
     setSearchValue('');
     setLoading(true);
-    fetch('https://api.github.com/users', {
-      headers: new Headers({
-        Accept: 'application/vnd.github.v3+json',
-        Authorization: 'token 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',
-      }),
-    })
+    fetch('https://api.github.com/users')
       .then((response) => response.json())
       .then((data) => {
         setUsers(data);
