@@ -17,7 +17,7 @@ export const UsersPage: FC<Props> = ({ setSearchValue }) => {
     fetch('https://api.github.com/users', {
       headers: new Headers({
         Accept: 'application/vnd.github.v3+json',
-        Authorization: 'token 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',
+        Authorization: 'token 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',
       }),
     })
       .then((response) => response.json())

@@ -35,7 +35,7 @@ export const UserProfilePage: FC<Props> = ({ setSearchValue }) => {
     fetch(`https://api.github.com/users/${login}`, {
       headers: new Headers({
         Accept: 'application/vnd.github.v3+json',
-        Authorization: 'token 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',
+        Authorization: 'token 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',
       }),
     })
       .then((res) => res.json())
@@ -51,7 +51,7 @@ export const UserProfilePage: FC<Props> = ({ setSearchValue }) => {
     fetch(`https://api.github.com/users/${login}/repos`, {
       headers: new Headers({
         Accept: 'application/vnd.github.v3+json',
-        Authorization: 'token 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',
+        Authorization: 'token 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',
       }),
     })
       .then((res) => res.json())
